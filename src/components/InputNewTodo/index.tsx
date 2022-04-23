@@ -10,7 +10,12 @@ type InputNewTodoProps = {
 type InputNewTodoState = {
     value: string
 }
-
+/**
+ * Nit!
+ * Лучше использовать функциональные компоненты и хуки. 
+ * Более чистым и легким для понимания компонентам по сравнению 
+ * с компонентами классов аналогичной сложности.
+ */
 export class InputNewTodo extends React.Component<InputNewTodoProps, InputNewTodoState> {
     componentDidUpdate(prevProps: Readonly<InputNewTodoProps>, prevState: Readonly<InputNewTodoState>, snapshot?: any) {
         if (this.props.todoTitle !== prevProps.todoTitle) {
@@ -22,13 +27,30 @@ export class InputNewTodo extends React.Component<InputNewTodoProps, InputNewTod
         this.props.onChange(e.target.value);
     }
 
+    /**
+     * Nit
+     * Если вложить input в form, то будет доступно событие onSubmit у формы, 
+     * который так же вызывается при нажатии Enter, что позволит избежать 
+     * взаимодействия с обработчиком события keydown
+     */
+
     handleKeyDown = (event: React.KeyboardEvent) => {
+        /**
+         * Использовать keyCode больше не рекомендуется. 
+         * Он устарел (удален) из спецификации ECMAScript
+         * Лучше сделать: event.key || event.keyCode;
+         */
         if (event.keyCode !== 13) {
             return;
         }
 
         event.preventDefault();
 
+        /**
+         * Nit!
+         * Можно осуществить проверку без объявления переменной val,
+         * в условном операторе if (this.state.value.trim())
+         */
         var val = this.state.value.trim();
 
         if (val) {

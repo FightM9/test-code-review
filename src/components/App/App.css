@@ -9,6 +9,9 @@
   font-size: calc(10px + 2vmin);
 }
 
+/* Селекторы класса .App и .main стилизуют один объект,
+может лучше их объединить */
+
 .main {
   padding-left: 30px;
   padding-right: 2em;
@@ -26,6 +29,8 @@
   }
 }
 
+/* Не используемые стили лучше удалить */
+
 .App-header {
   /*background-color: #282c34;*/
 
@@ -41,6 +46,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -50,11 +56,14 @@
   color: black;
   font-size: unset;
 }
+
 .App-footer-link:visited {
   color: gray;
   opacity: 0.5;
 }
 
+/* Лучше объявить селектор класса перед его потомками и далее 
+создавать вложенность App, App-footer, App-footer-link */
 
 .App-footer {
   display: flex;

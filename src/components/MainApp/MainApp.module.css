@@ -1,3 +1,8 @@
+/* Свойства, сильнее влияющие на документ, идут первыми 
+ * Правила форматирования CSS
+ * https://learn.javascript.ru/css-format
+ */
+
 .todo {
     width: 400px;
     height:50px;

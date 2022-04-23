@@ -1,10 +1,22 @@
 import { configureStore } from '@reduxjs/toolkit'
 
+/**
+ * Nit
+ * Конфигурацию хранилища и редуктор можно разделить на два файла.
+ * Например, store и todoReducer. Это упростит работу, когда
+ * количество редукторов увеличится
+ */
 export default configureStore({
     reducer: {
         list: (state = {todos: []}, action) => {
             switch (action.type) {
                 case 'ADD_TODO': {
+
+                    /**
+                     * Redux строго придерживается принципов иммутабельности
+                     * Необходимо использовать spread-оператор или concat
+                     * https://redux.js.org/faq/immutable-data#why-is-immutability-required-by-redux
+                     */
                     const newState = state;
                     newState.todos.push(action.payload);
                     return newState;
