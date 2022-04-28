@@ -18,6 +18,9 @@ function UserSelect(props: UserSelectProps) {
              */
             console.log('userSelect');
             /**
+             * Лучше вынести работу с сервером в отдельный файл,
+             * разделяя UI и получение данных.
+             * 
              * Могут возникнуть ошибки при работе REST API. 
              * Во избежанию проблем, необходимо обрабатывать такие случаи. 
              * Например, использовать try.. catch
@@ -34,7 +37,7 @@ function UserSelect(props: UserSelectProps) {
     const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         /**
         * Логику работы по обновлению состояния 
-        * лучше вынести в редуктор и передовать только id.   
+        * лучше вынести в редьюсер и передовать только id.   
         */
         const changedTodos = todos.map((t, index) => {
             const res = { ...t }
@@ -50,7 +53,7 @@ function UserSelect(props: UserSelectProps) {
             return res;
         })
         /**
-         * В редукторе нет действия с именем CHANGE_TODO,
+         * В редьюсере нет действия с именем CHANGE_TODO,
          * Возможно имели ввиду CHANGE_TODOS.
          * Во избежание таких опечаток, можно создать константы.
          */

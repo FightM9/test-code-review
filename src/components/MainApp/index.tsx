@@ -47,6 +47,11 @@ class Index extends React.Component<MainAppProps, MainAppState> {
         const { todoTitle } = this.state;
         window.allTodosIsDone = true;
 
+        /**
+         * Для перебора масива без изменений,
+         * лучше использолвать метод forEach()
+         */
+
         this.props.todos.map(t => {
             if (!t.isDone) {
                 window.allTodosIsDone = false
@@ -94,10 +99,14 @@ class Index extends React.Component<MainAppProps, MainAppState> {
                             type="checkbox" checked={t.isDone} onChange={(e) => {
                               /**
                                * Логику работы по обновлению состояния 
-                               * лучше вынести в редуктор.   
+                               * лучше вынести в редьюсер.   
                                */
                             const changedTodos = this.props.todos.map((t, index) => {
                                 /**
+                                 * Использование обычного сравнения == может вызывать 
+                                 * проблемы, происходит неявное преобразование типов. 
+                                 * Рекомендую использовать строгое сравнение index === idx
+                                 * 
                                  * Nit!
                                  * Использование тернарного оператора и spread
                                  * позволит сократить количество кода
